@@ -39,6 +39,12 @@ py_library(
     ],
 )
 
+genrule(
+    name="gen_dir",
+    outs=["someDir"],
+    cmd="mkdir -p $@",
+)
+
 # Package just a specific py_libraries, without their dependencies
 py_wheel(
     name = "minimal_with_py_library",
@@ -157,12 +163,6 @@ py_wheel(
     deps = [
         ":example_pkg_with_data"
     ]
-)
-
-genrule(
-    name = "gen_dir",
-    outs = ["someDir"],
-    cmd = "mkdir -p $@",
 )
 
 py_test(
