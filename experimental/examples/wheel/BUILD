@@ -14,10 +14,16 @@
 
 load("//experimental/python:wheel.bzl", "py_package", "py_wheel")
 load("//python:defs.bzl", "py_library", "py_test")
+load(":dir_generator.bzl", "dir_generator")
 
 package(default_visibility = ["//visibility:public"])
 
 licenses(["notice"])  # Apache 2.0
+
+
+dir_generator(
+    name = "generated"
+)
 
 py_library(
     name = "main",
@@ -55,6 +61,7 @@ py_wheel(
     deps = [
         "//experimental/examples/wheel/lib:module_with_data",
         "//experimental/examples/wheel/lib:simple_module",
+        ":generated",
     ],
 )
 
